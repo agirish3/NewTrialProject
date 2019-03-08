@@ -47,7 +47,7 @@ pipeline {
 
        stage('Android Build') {
           steps {
-               sh 'cordova build android'
+               sh 'ionic cordova build android'
                
           }
        }
