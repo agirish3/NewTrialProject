@@ -61,11 +61,11 @@ pipeline {
 
 
 
-      stage('Stage Web Build') {
-          steps {
-              sh 'npm run build --prod'
-          }
-       }
+    //   stage('Stage Web Build') {
+    //       steps {
+    //           sh 'npm run build --prod'
+    //       }
+    //    }
 
       //    stage('Publish Firebase Web') {
       //     steps {
