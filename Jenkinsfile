@@ -22,17 +22,16 @@ pipeline {
       //  }
 
         stage('SonarQube analysis') {
-            echo "SonarQube"
-            // steps {
-            //     echo "SonarQube"
-            //     script {
-            //         // requires SonarQube Scanner 2.8+
-            //         scannerHome = tool 'SonarQube Scanner 2.8';
-            //     }
-            //     withSonarQubeEnv('My SonarQube Scanner') {
-            //         sh "${scannerHome}/bin/sonar-scanner"
-            //     }
-            // }
+            steps {
+                echo "SonarQube"
+                // script {
+                //     // requires SonarQube Scanner 2.8+
+                //     scannerHome = tool 'SonarQube Scanner 2.8';
+                // }
+                // withSonarQubeEnv('My SonarQube Scanner') {
+                //     sh "${scannerHome}/bin/sonar-scanner"
+                // }
+            }
         }
 
       stage('Unit Tests') {
