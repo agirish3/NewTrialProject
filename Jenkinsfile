@@ -24,18 +24,18 @@ pipeline {
          }
        }
       
-      // stage('SonarQube analysis') {
-      //   steps {
-      //     echo "SonarQube"
-      //     script {
-      //       // requires SonarQube Scanner 2.8+
-      //       scannerHome = tool 'SonarQube Scanner 2.8';
-      //     }
-      //     withSonarQubeEnv('My SonarQube Server') {
-      //       sh "${scannerHome}/bin/sonar-scanner"
-      //     }
-      //   }
-      // }
+      stage('SonarQube analysis') {
+        steps {
+          echo "SonarQube"
+          script {
+            // requires SonarQube Scanner 2.8+
+            scannerHome = tool 'SonarQube Scanner 2.8';
+          }
+          withSonarQubeEnv('My SonarQube Server') {
+            sh "${scannerHome}/bin/sonar-scanner"
+          }
+        }
+      }
 
       stage('Android Build') {
           steps {
@@ -43,12 +43,12 @@ pipeline {
           }
       }
 
-      stage('IOS Build') {
-          steps {
-            //sh 'ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0"'
-            sh 'sudo ionic cordova run ios -- --buildFlag="-UseModernBuildSystem=0"'
-          }
-       }
+      // stage('IOS Build') {
+      //     steps {
+      //       //sh 'ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0"'
+      //       sh 'sudo ionic cordova run ios -- --buildFlag="-UseModernBuildSystem=0"'
+      //     }
+      //  }
 
        stage('APK Sign for android') {
           steps {
