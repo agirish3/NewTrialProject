@@ -16,14 +16,14 @@ pipeline {
 
       stage('Unit Tests') {
           steps {
-            //  sh 'npm test --no-browsers'
+            //  sh 'npm test --single-run --cc'//cc stands for code coverage
             echo "Unit Test Case Execution 1/2 in progress..."
             echo "Completed..."
             echo "Unit Test Case Execution 2/2 in progress..."
             echo "Completed..."
          }
        }
-      //dpYHLsi8yq8:APA91bHAYXlS5sjJQyFmM7VHyzRyqF3QjZTeVBbGqIXZQGtFJSrKcSdb_mIriw-RcT_XWNz3KOoQgcipTTVpO46Fh_E9f0YttmN3qJvGkzoyH49oGiVbS5swQibApxt6rG-VCNq_gU6j
+    
       stage('SonarQube analysis') {
         steps {
           echo "SonarQube"
