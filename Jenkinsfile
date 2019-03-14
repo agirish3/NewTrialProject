@@ -31,7 +31,7 @@ pipeline {
             // requires SonarQube Scanner 2.8+
             scannerHome = tool 'My SonarQube Scanner';
           }
-          withSonarQubeEnv('My SonarQube Server') {
+          withSonarQubeEnv('SonarQube') {
             sh "${scannerHome}/bin/sonar-scanner"
           }
         }
