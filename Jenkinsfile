@@ -29,7 +29,7 @@ pipeline {
           echo "SonarQube"
           script {
             // requires SonarQube Scanner 2.8+
-            scannerHome = tool 'SonarQube Scanner 2.8';
+            scannerHome = tool 'My SonarQube Scanner';
           }
           withSonarQubeEnv('My SonarQube Server') {
             sh "${scannerHome}/bin/sonar-scanner"
