@@ -31,32 +31,31 @@ pipeline {
       //       // requires SonarQube Scanner 2.8+
       //       scannerHome = tool 'SonarQube Scanner 2.8';
       //     }
-      //     withSonarQubeEnv('My SonarQube Scanner') {
+      //     withSonarQubeEnv('My SonarQube Server') {
       //       sh "${scannerHome}/bin/sonar-scanner"
       //     }
       //   }
       // }
 
-       stage('IOS Build') {
-          steps {
-             sh 'ionic cordova build ios'
-          }
-       }
-
-       stage('Android Build') {
+      stage('Android Build') {
           steps {
                sh 'ionic cordova build android' 
           }
+      }
+
+      stage('IOS Build') {
+          steps {
+            //sh 'ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0"'
+            sh 'sudo ionic cordova run ios -- --buildFlag="-UseModernBuildSystem=0"'
+          }
        }
 
-       stage('APK Sign') {
+       stage('APK Sign for android') {
           steps {
             // sh 'jarsigner -storepass your_password -keystore keys/yourkey.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk nameApp'
               echo "Android"
           }
-       }
-
-
+      }
 
     //   stage('Stage Web Build') {
     //       steps {
@@ -71,18 +70,17 @@ pipeline {
       //     }
       //  }
 
-      //   stage('Publish iOS') {
-      //     steps {   
-      //         echo "Publish iOS"
-      //     }
-      //  }
-
         stage('Publish Android') {
           steps {
               echo "Publish Android"
           }
-       }
+        }
 
+          stage('Publish iOS') {
+            steps {   
+                echo "Publish iOS"
+            }
+         }
 
 }
 }
