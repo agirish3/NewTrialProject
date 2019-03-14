@@ -21,19 +21,6 @@ pipeline {
       //     }
       //  }
 
-        stage('SonarQube analysis') {
-            steps {
-                echo "SonarQube"
-                // script {
-                //     // requires SonarQube Scanner 2.8+
-                //     scannerHome = tool 'SonarQube Scanner 2.8';
-                // }
-                // withSonarQubeEnv('My SonarQube Scanner') {
-                //     sh "${scannerHome}/bin/sonar-scanner"
-                // }
-            }
-        }
-
       stage('Unit Tests') {
           steps {
             //  sh 'npm test --no-browsers'
@@ -43,11 +30,22 @@ pipeline {
             echo "Completed..."
          }
        }
-
+      
+      stage('SonarQube analysis') {
+        steps {
+          echo "SonarQube"
+          script {
+            // requires SonarQube Scanner 2.8+
+            scannerHome = tool 'SonarQube Scanner 2.8';
+          }
+          withSonarQubeEnv('My SonarQube Scanner') {
+            sh "${scannerHome}/bin/sonar-scanner"
+          }
+        }
+      }
        stage('Android Build') {
           steps {
-               sh 'ionic cordova build android'
-               
+               sh 'ionic cordova build android' 
           }
        }
 
