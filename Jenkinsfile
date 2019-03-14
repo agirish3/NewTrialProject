@@ -14,13 +14,6 @@ pipeline {
          }
        }
 
-      //  stage('IOS Build') {
-      //     steps {
-      //        sh 'ionic cordova build ios --release'
-             
-      //     }
-      //  }
-
       stage('Unit Tests') {
           steps {
             //  sh 'npm test --no-browsers'
@@ -31,18 +24,25 @@ pipeline {
          }
        }
       
-      stage('SonarQube analysis') {
-        steps {
-          echo "SonarQube"
-          script {
-            // requires SonarQube Scanner 2.8+
-            scannerHome = tool 'SonarQube Scanner 2.8';
+      // stage('SonarQube analysis') {
+      //   steps {
+      //     echo "SonarQube"
+      //     script {
+      //       // requires SonarQube Scanner 2.8+
+      //       scannerHome = tool 'SonarQube Scanner 2.8';
+      //     }
+      //     withSonarQubeEnv('My SonarQube Scanner') {
+      //       sh "${scannerHome}/bin/sonar-scanner"
+      //     }
+      //   }
+      // }
+
+       stage('IOS Build') {
+          steps {
+             sh 'ionic cordova build ios'
           }
-          withSonarQubeEnv('My SonarQube Scanner') {
-            sh "${scannerHome}/bin/sonar-scanner"
-          }
-        }
-      }
+       }
+
        stage('Android Build') {
           steps {
                sh 'ionic cordova build android' 
