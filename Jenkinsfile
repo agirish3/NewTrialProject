@@ -26,7 +26,6 @@ pipeline {
     
       stage('SonarQube analysis') {
         steps {
-          //sh 'sonar-runner -Dsonar.projectKey=io-ionic-starter -Dsonar.sources=src'
           echo "SonarQube"
           script {
             // requires SonarQube Scanner 2.8+
@@ -47,7 +46,7 @@ pipeline {
       stage('IOS Build') {
           steps {
             //sh 'ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0"'
-            sh 'sudo ionic cordova run ios -- --buildFlag="-UseModernBuildSystem=0"'
+            sh 'ionic cordova run ios -- --buildFlag="-UseModernBuildSystem=0"'
           }
        }
 
