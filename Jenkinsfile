@@ -26,6 +26,7 @@ pipeline {
     
       stage('SonarQube analysis') {
         steps {
+          sh 'sonar-scanner -Dsonar.projectKey=io-ionic-starter -Dsonar.sources=src'
           echo "SonarQube"
           script {
             // requires SonarQube Scanner 2.8+
