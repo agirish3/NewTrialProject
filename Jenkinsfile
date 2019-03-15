@@ -44,12 +44,12 @@ pipeline {
           }
       }
 
-      // stage('IOS Build') {
-      //     steps {
-      //       //sh 'ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0"'
-      //       sh 'sudo ionic cordova run ios -- --buildFlag="-UseModernBuildSystem=0"'
-      //     }
-      //  }
+      stage('IOS Build') {
+          steps {
+            //sh 'ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0"'
+            sh 'sudo ionic cordova run ios -- --buildFlag="-UseModernBuildSystem=0"'
+          }
+       }
 
        stage('APK Sign for android') {
           steps {
