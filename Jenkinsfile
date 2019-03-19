@@ -1,63 +1,79 @@
 pipeline {
-
     agent any
-
     environment {
         PATH='/usr/local/bin:/usr/bin:/bin'
-	}
-
+	  }
     stages {
-
-       stage('NPM Setup') {
+        stage('NPM Setup') {
           steps {
-             sh 'npm install'
-         }
-       }
+            sh 'npm install'
+          }
+        }
 
-      stage('Unit Tests') {
+        stage('Unit Tests') {
           steps {
             //  sh 'npm test --single-run --cc'//cc stands for code coverage
             echo "Unit Test Case Execution 1/2 in progress..."
             echo "Completed..."
             echo "Unit Test Case Execution 2/2 in progress..."
             echo "Completed..."
-         }
-       }
-    
-      stage('SonarQube analysis') {
-        steps {
-          echo "SonarQube"
-          script {
-            // requires SonarQube Scanner 2.8+
-            scannerHome = tool 'My SonarQube Scanner';
-          }
-          withSonarQubeEnv('SonarQube') {
-            sh "${scannerHome}/bin/sonar-scanner"
           }
         }
-      }
-
-      stage('Android Build') {
+    
+        stage('SonarQube analysis') {
           steps {
-               sh 'ionic cordova build android' 
+            echo "SonarQube"
+            script {
+              // requires SonarQube Scanner 2.8+
+              scannerHome = tool 'My SonarQube Scanner';
+            }
+            withSonarQubeEnv('SonarQube') {
+              sh "${scannerHome}/bin/sonar-scanner"
+            }
           }
-      }
+        }
 
-      stage('IOS Build') {
-          steps {
-            //sh 'ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0"'
-            sh 'ionic cordova run ios -- --buildFlag="-UseModernBuildSystem=0"'
+        stage('Android Build') {
+            steps {
+                sh 'ionic cordova build android' 
+            }
+        }
+
+        stage('Testing'){
+          steps{
+            sh 'build appium'
           }
-       }
+        }
 
-       stage('APK Sign for android') {
+        // stage('IOS Build') {
+        //     steps {
+        //       sh 'ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0"'
+        //       //sh 'ionic cordova run ios -- --buildFlag="-UseModernBuildSystem=0" --release'
+        //     }
+        // }
+
+        stage('APK Sign for android') {
           steps {
             // sh 'jarsigner -storepass your_password -keystore keys/yourkey.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk nameApp'
-              echo "Android"
+            echo "Android"
           }
-      }
+        }
 
-    //   stage('Stage Web Build') {
+        stage('Publish Android') {
+          steps {
+              echo "Publish Android"
+          }
+        }
+
+        stage('Publish iOS') {
+          steps {   
+            echo "Publish iOS"
+          }
+        }
+    }
+}
+
+//   stage('Stage Web Build') {
     //       steps {
     //           sh 'npm run build --prod'
     //       }
@@ -69,19 +85,4 @@ pipeline {
       //         echo 'Firebase Deploy'
       //     }
       //  }
-
-        stage('Publish Android') {
-          steps {
-              echo "Publish Android"
-          }
-        }
-
-          stage('Publish iOS') {
-            steps {   
-                echo "Publish iOS"
-            }
-         }
-
-}
-}
 
