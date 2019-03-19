@@ -12,11 +12,11 @@ pipeline {
 
         stage('Unit Tests') {
           steps {
-            //  sh 'npm test --single-run --cc'//cc stands for code coverage
-            echo "Unit Test Case Execution 1/2 in progress..."
-            echo "Completed..."
-            echo "Unit Test Case Execution 2/2 in progress..."
-            echo "Completed..."
+              sh 'npm test --watch=false'
+            // echo "Unit Test Case Execution 1/2 in progress..."
+            // echo "Completed..."
+            // echo "Unit Test Case Execution 2/2 in progress..."
+            // echo "Completed..."
           }
         }
     
@@ -41,7 +41,7 @@ pipeline {
 
         stage('Testing'){
           steps{
-            sh 'build appium'
+            sh 'build "appium"'
           }
         }
 
