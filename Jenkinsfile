@@ -13,37 +13,33 @@ pipeline {
         stage('Unit Tests') {
           steps {
               sh 'npm test --watch=false'
-            // echo "Unit Test Case Execution 1/2 in progress..."
-            // echo "Completed..."
-            // echo "Unit Test Case Execution 2/2 in progress..."
-            // echo "Completed..."
           }
         }
     
-        // stage('SonarQube analysis') {
-        //   steps {
-        //     echo "SonarQube"
-        //     script {
-        //       // requires SonarQube Scanner 2.8+
-        //       scannerHome = tool 'My SonarQube Scanner';
-        //     }
-        //     withSonarQubeEnv('SonarQube') {
-        //       sh "${scannerHome}/bin/sonar-scanner"
-        //     }
-        //   }
-        // }
+        stage('SonarQube analysis') {
+          steps {
+            echo "SonarQube"
+            script {
+              // requires SonarQube Scanner 2.8+
+              scannerHome = tool 'My SonarQube Scanner';
+            }
+            withSonarQubeEnv('SonarQube') {
+              sh "${scannerHome}/bin/sonar-scanner"
+            }
+          }
+        }
 
-        // stage('Android Build') {
-        //     steps {
-        //         sh 'ionic cordova build android' 
-        //     }
-        // }
+        stage('Android Build') {
+            steps {
+                sh 'ionic cordova build android' 
+            }
+        }
 
-        // stage('Testing'){
-        //   steps{
-        //     build 'appium'
-        //   }
-        // }
+        stage('Functional Testing'){
+          steps{
+            build 'appium'
+          }
+        }
 
         // stage('IOS Build') {
         //     steps {
