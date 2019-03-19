@@ -41,7 +41,7 @@ pipeline {
 
         stage('Testing'){
           steps{
-            sh 'build job: "appium", wait: false'
+            build 'appium'
           }
         }
 
