@@ -43,7 +43,8 @@ pipeline {
 
         stage('Upload apk to Testfairy'){
           steps{
-            sh '${WORKSPACE}/testfairy-upload.sh ${WORKSPACE}/platforms/android/app/build/outputs/apk/debug/app-debug.apk'
+            //sh '${WORKSPACE}/testfairy-upload.sh ${WORKSPACE}/platforms/android/app/build/outputs/apk/debug/app-debug.apk'
+            sh 'sh testfairy-upload.sh ./platforms/android/app/build/outputs/apk/debug/app-debug.apk'
           }
         }
 
