@@ -35,13 +35,13 @@ pipeline {
             }
         }
 
-        stage('Appium Testing'){
+        stage('Functional Testing using Appium'){
           steps{
             build 'appium'
           }
         }
 
-        stage('App Upload and Distribution with Testfairy'){
+        stage('App Upload and Distribution using Testfairy'){
           steps{
             sh 'sh testfairy-upload.sh ./platforms/android/app/build/outputs/apk/debug/app-debug.apk'
           }
