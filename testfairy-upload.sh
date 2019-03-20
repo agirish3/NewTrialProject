@@ -21,7 +21,7 @@ TESTERS_GROUPS="all"
 AUTO_UPDATE="off"
 
 # Use comment field to add release notes. Text will be included in the email sent to testers and in landing pages.
-COMMENT="Testing Android App 1st upload"
+COMMENT="Testing Android App 2st upload"
 
 # locations of various tools
 CURL=curl

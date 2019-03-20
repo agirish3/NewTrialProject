@@ -10,7 +10,7 @@ pipeline {
           }
         }
 
-        stage('Unit Tests') {
+        stage('Unit Testing and Linting') {
           steps {
               sh 'npm test --watch=false'
           }
@@ -35,15 +35,14 @@ pipeline {
             }
         }
 
-        // stage('Appium Testing'){
-        //   steps{
-        //     build 'appium'
-        //   }
-        // }
-
-        stage('Upload apk to Testfairy'){
+        stage('Appium Testing'){
           steps{
-            //sh '${WORKSPACE}/testfairy-upload.sh ${WORKSPACE}/platforms/android/app/build/outputs/apk/debug/app-debug.apk'
+            build 'appium'
+          }
+        }
+
+        stage('App Upload and Distribution with Testfairy'){
+          steps{
             sh 'sh testfairy-upload.sh ./platforms/android/app/build/outputs/apk/debug/app-debug.apk'
           }
         }
