@@ -35,9 +35,15 @@ pipeline {
             }
         }
 
-        stage('Functional Testing'){
+        stage('Appium Testing'){
           steps{
             build 'appium'
+          }
+        }
+
+        stage('Upload apk to Testfairy'){
+          steps{
+            sh '${WORKSPACE}/testfairy-upload.sh ${WORKSPACE}/platforms/android/app/build/outputs/apk/debug/apk-debug.apk'
           }
         }
 
@@ -48,24 +54,24 @@ pipeline {
         //     }
         // }
 
-        stage('APK Sign for android') {
-          steps {
-            // sh 'jarsigner -storepass your_password -keystore keys/yourkey.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk nameApp'
-            echo "Android"
-          }
-        }
+        // stage('APK Sign for android') {
+        //   steps {
+        //     // sh 'jarsigner -storepass your_password -keystore keys/yourkey.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk nameApp'
+        //     echo "Android"
+        //   }
+        // }
 
-        stage('Publish Android') {
-          steps {
-              echo "Publish Android"
-          }
-        }
+        // stage('Publish Android') {
+        //   steps {
+        //       echo "Publish Android"
+        //   }
+        // }
 
-        stage('Publish iOS') {
-          steps {   
-            echo "Publish iOS"
-          }
-        }
+        // stage('Publish iOS') {
+        //   steps {   
+        //     echo "Publish iOS"
+        //   }
+        // }
     }
 }
 
