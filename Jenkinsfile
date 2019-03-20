@@ -35,11 +35,11 @@ pipeline {
             }
         }
 
-        stage('Appium Testing'){
-          steps{
-            build 'appium'
-          }
-        }
+        // stage('Appium Testing'){
+        //   steps{
+        //     build 'appium'
+        //   }
+        // }
 
         stage('Upload apk to Testfairy'){
           steps{
