@@ -43,7 +43,7 @@ pipeline {
 
         stage('IOS Archive') {
             steps {
-              sh 'xcodebuild -workspace ./platforms/ios/MyApp.xcworkspace -scheme ./platforms/ios/MyApp -sdk iphoneos -configuration AppStoreDistribution archive -archivePath $PWD/platforms/ios/build/MyApp.xcarchive'
+              sh 'xcodebuild -workspace ./platforms/ios/MyApp.xcworkspace -scheme MyApp -sdk iphoneos -configuration AppStoreDistribution archive -archivePath $PWD/platforms/ios/build/MyApp.xcarchive'
             }
         }
 
