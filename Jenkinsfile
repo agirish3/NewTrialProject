@@ -29,30 +29,42 @@ pipeline {
           }
         }
 
-        stage('Android Build') {
+        // stage('Android Build') {
+        //     steps {
+        //         sh 'ionic cordova build android' 
+        //     }
+        // }
+
+        // stage('Functional Testing using Appium'){
+        //   steps{
+        //     build 'appium'
+        //   }
+        // }
+
+        stage('IOS Build') {
             steps {
-                sh 'ionic cordova build android' 
+              sh 'ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0"'
             }
         }
 
-        stage('Functional Testing using Appium'){
-          steps{
-            build 'appium'
-          }
+        stage('IOS Archive') {
+            steps {
+              sh 'xcodebuild -workspace MyApp.xcworkspace -scheme MyApp -sdk iphoneos -configuration AppStoreDistribution archive -archivePath $PWD/build/MyApp.xcarchive'
+            }
+        }
+
+        stage('IOS IPA') {
+            steps {
+              sh 'xcodebuild -exportArchive -archivePath $PWD/build/MyApp.xcarchive -exportOptionsPlist exportOptions.plist -exportPath $PWD/build'
+            }
         }
 
         stage('App Upload and Distribution using Testfairy'){
           steps{
-            sh 'sh testfairy-upload.sh ./platforms/android/app/build/outputs/apk/debug/app-debug.apk'
+            sh 'sh testfairy-upload.sh ./platforms/ios/build/MyApp.ipa'
+            //sh 'sh testfairy-upload.sh ./platforms/android/app/build/outputs/apk/debug/app-debug.apk'
           }
         }
-
-        // stage('IOS Build') {
-        //     steps {
-        //       sh 'ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0"'
-        //       //sh 'ionic cordova run ios -- --buildFlag="-UseModernBuildSystem=0" --release'
-        //     }
-        // }
 
         // stage('APK Sign for android') {
         //   steps {
