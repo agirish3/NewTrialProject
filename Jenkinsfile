@@ -35,11 +35,11 @@ pipeline {
         //     }
         // }
 
-        stage('IOS Build') {
-            steps {
-              sh 'ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0" --release'
-            }
-        }
+        // stage('IOS Build') {
+        //     steps {
+        //       sh 'ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0" --release'
+        //     }
+        // }
 
         // stage('IOS Archive') {
         //     steps {
@@ -55,7 +55,7 @@ pipeline {
 
         stage('IOS'){
           steps{
-            xcodeBuild appURL: '', assetPackManifestURL: '', buildDir: '', buildIpa: true, bundleID: 'com.sampleJenkinsApp', bundleIDInfoPlistPath: '', cfBundleShortVersionStringValue: '', cfBundleVersionValue: '', cleanBeforeBuild: false, cleanResultBundlePath: false, configuration: 'Development', developmentTeamID: '9Q7ES27ZH2', developmentTeamName: 'Ajay Joseph', displayImageURL: '', fullSizeImageURL: '', generateArchive: true, ipaExportMethod: 'development', ipaName: 'MyApp', ipaOutputDirectory: '/platforms/ios/build', keychainName: 'keychain', keychainPath: '/Library/Keychains', keychainPwd: 'Tcs@jnj', logfileOutputDirectory: '', provisioningProfiles: [[provisioningProfileAppId: 'com.sampleJenkinsApp', provisioningProfileUUID: '8c0750c1-cdb6-417e-87ed-5f8adc4bc764']], resultBundlePath: '', sdk: '', signingMethod: 'manual', symRoot: '', target: '', thinning: '', unlockKeychain: true, xcodeProjectFile: '', xcodeProjectPath: '/platforms/ios', xcodeSchema: '/platforms/ios/MyApp', xcodeWorkspaceFile: '/platforms/ios/MyApp.xcworkspace', xcodebuildArguments: ''
+            xcodeBuild appURL: '', assetPackManifestURL: '', buildDir: '', buildIpa: true, bundleID: 'com.sampleJenkinsApp', bundleIDInfoPlistPath: '', cfBundleShortVersionStringValue: '', cfBundleVersionValue: '', cleanBeforeBuild: false, cleanResultBundlePath: false, configuration: 'Development', developmentTeamID: '9Q7ES27ZH2', developmentTeamName: 'Ajay Joseph', displayImageURL: '', fullSizeImageURL: '', generateArchive: true, ipaExportMethod: 'development', ipaName: 'MyApp', ipaOutputDirectory: '', keychainName: 'keychain', keychainPath: '/Library/Keychains', keychainPwd: 'Tcs@jnj', logfileOutputDirectory: '', provisioningProfiles: [[provisioningProfileAppId: 'com.sampleJenkinsApp', provisioningProfileUUID: '8c0750c1-cdb6-417e-87ed-5f8adc4bc764']], resultBundlePath: '', sdk: '', signingMethod: 'manual', symRoot: '', target: '', thinning: '', unlockKeychain: true, xcodeProjectFile: '', xcodeProjectPath: '', xcodeSchema: 'MyApp', xcodeWorkspaceFile: '', xcodebuildArguments: ''
           }
         }
 
