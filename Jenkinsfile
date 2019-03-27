@@ -35,12 +35,6 @@ pipeline {
         //     }
         // }
 
-        // stage('Functional Testing using Appium'){
-        //   steps{
-        //     build 'appium'
-        //   }
-        // }
-
         stage('IOS Build') {
             steps {
               sh 'ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0"'
@@ -49,7 +43,7 @@ pipeline {
 
         stage('IOS Archive') {
             steps {
-              sh 'xcodebuild -workspace ./platforms/ios/MyApp.xcworkspace -scheme MyApp -sdk iphoneos -configuration AppStoreDistribution archive -archivePath $PWD/platforms/ios/build/MyApp.xcarchive'
+              sh 'xcodebuild -workspace ./platforms/ios/MyApp.xcworkspace -scheme ./platforms/ios/MyApp -sdk iphoneos -configuration AppStoreDistribution archive -archivePath $PWD/platforms/ios/build/MyApp.xcarchive'
             }
         }
 
@@ -58,6 +52,12 @@ pipeline {
               sh 'xcodebuild -exportArchive -archivePath $PWD/platforms/ios/build/MyApp.xcarchive -exportOptionsPlist ./platforms/ios/exportOptions.plist -exportPath $PWD/platforms/ios/build'
             }
         }
+
+        // stage('Functional Testing using Appium'){
+        //   steps{
+        //     build 'appium'
+        //   }
+        // }
 
         stage('App Upload and Distribution using Testfairy'){
           steps{
