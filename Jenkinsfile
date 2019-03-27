@@ -10,30 +10,30 @@ pipeline {
           }
         }
 
-        stage('Unit Testing and Linting') {
-          steps {
-              sh 'npm test --watch=false'
-          }
-        }
+        // stage('Unit Testing and Linting') {
+        //   steps {
+        //       sh 'npm test --watch=false'
+        //   }
+        // }
     
-        stage('SonarQube analysis') {
-          steps {
-            echo "SonarQube"
-            script {
-              // requires SonarQube Scanner 2.8+
-              scannerHome = tool 'My SonarQube Scanner';
-            }
-            withSonarQubeEnv('SonarQube') {
-              sh "${scannerHome}/bin/sonar-scanner"
-            }
-          }
-        }
+        // stage('SonarQube analysis') {
+        //   steps {
+        //     echo "SonarQube"
+        //     script {
+        //       // requires SonarQube Scanner 2.8+
+        //       scannerHome = tool 'My SonarQube Scanner';
+        //     }
+        //     withSonarQubeEnv('SonarQube') {
+        //       sh "${scannerHome}/bin/sonar-scanner"
+        //     }
+        //   }
+        // }
 
-        stage('Android Build') {
-            steps {
-                sh 'ionic cordova build android' 
-            }
-        }
+        // stage('Android Build') {
+        //     steps {
+        //         sh 'ionic cordova build android' 
+        //     }
+        // }
 
         stage('IOS Build') {
             steps {
