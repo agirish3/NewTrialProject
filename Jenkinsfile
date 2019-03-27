@@ -37,7 +37,7 @@ pipeline {
 
         stage('IOS Build') {
             steps {
-              sh 'ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0"'
+              sh 'ionic cordova build ios -- --buildFlag="-UseModernBuildSystem=0" --release'
             }
         }
 
