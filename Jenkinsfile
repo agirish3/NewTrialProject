@@ -49,13 +49,13 @@ pipeline {
 
         stage('IOS Archive') {
             steps {
-              sh 'xcodebuild -workspace MyApp.xcworkspace -scheme MyApp -sdk iphoneos -configuration AppStoreDistribution archive -archivePath $PWD/build/MyApp.xcarchive'
+              sh 'xcodebuild -workspace ./platforms/ios/MyApp.xcworkspace -scheme MyApp -sdk iphoneos -configuration AppStoreDistribution archive -archivePath $PWD/platforms/ios/build/MyApp.xcarchive'
             }
         }
 
         stage('IOS IPA') {
             steps {
-              sh 'xcodebuild -exportArchive -archivePath $PWD/build/MyApp.xcarchive -exportOptionsPlist exportOptions.plist -exportPath $PWD/build'
+              sh 'xcodebuild -exportArchive -archivePath $PWD/platforms/ios/build/MyApp.xcarchive -exportOptionsPlist ./platforms/ios/exportOptions.plist -exportPath $PWD/platforms/ios/build'
             }
         }
 
